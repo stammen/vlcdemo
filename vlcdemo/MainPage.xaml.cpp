@@ -1,0 +1,58 @@
+﻿//
+// MainPage.xaml.cpp
+// Implementation of the MainPage class.
+//
+
+#include "pch.h"
+#include "MainPage.xaml.h"
+#include <ppltasks.h>
+
+using namespace vlcdemo;
+
+using namespace concurrency;
+using namespace Platform;
+using namespace Windows::Foundation;
+using namespace Windows::Foundation::Collections;
+using namespace Windows::UI::Core;
+using namespace Windows::UI::Xaml;
+using namespace Windows::UI::Xaml::Controls;
+using namespace Windows::UI::Xaml::Controls::Primitives;
+using namespace Windows::UI::Xaml::Data;
+using namespace Windows::UI::Xaml::Input;
+using namespace Windows::UI::Xaml::Media;
+using namespace Windows::UI::Xaml::Navigation;
+
+// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+
+MainPage::MainPage()
+{
+	InitializeComponent();
+}
+
+void vlcdemo::MainPage::StoreButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+    auto dispatcher = Window::Current->CoreWindow->Dispatcher;
+    Windows::ApplicationModel::FullTrustProcessLauncher::LaunchFullTrustProcessForCurrentAppAsync();
+    auto uri = ref new Windows::Foundation::Uri(L"https://www.microsoft.com/en-us/store/p/vlc/9nblggh4vvnh");
+    concurrency::task<bool> launchUriOperation(Windows::System::Launcher::LaunchUriAsync(uri));
+    launchUriOperation.then([dispatcher](bool result)
+    {
+        dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new DispatchedHandler([=]()
+        {
+            Windows::UI::Xaml::Application::Current->Exit();
+        }));
+    });
+}
+
+void vlcdemo::MainPage::VLCButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+    auto dispatcher = Window::Current->CoreWindow->Dispatcher;
+    auto t = create_task(Windows::ApplicationModel::FullTrustProcessLauncher::LaunchFullTrustProcessForCurrentAppAsync());
+    t.then([dispatcher]()
+    {
+        dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new DispatchedHandler([=]()
+        {
+            Windows::UI::Xaml::Application::Current->Exit();
+        }));
+    });
+}

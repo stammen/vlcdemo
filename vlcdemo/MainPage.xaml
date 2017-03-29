@@ -1,0 +1,19 @@
+﻿<Page
+    x:Class="vlcdemo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:vlcdemo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Orientation="Vertical">
+            <Image Source="Assets\windows_10_devices.jpg"></Image>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                <Button Name="VLCButton" Content="Launch VLC" Click="VLCButton_Click" ></Button>
+                <Button Name="StoreButton" Content="Get VLC" Click="StoreButton_Click" Margin="20,0,0,0"></Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
