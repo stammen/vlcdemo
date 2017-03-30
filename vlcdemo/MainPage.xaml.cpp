@@ -47,13 +47,18 @@ void vlcdemo::MainPage::StoreButton_Click(Platform::Object^ sender, Windows::UI:
 void vlcdemo::MainPage::HyperlinkButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
     auto dispatcher = Window::Current->CoreWindow->Dispatcher;
-    auto t = create_task(Windows::ApplicationModel::FullTrustProcessLauncher::LaunchFullTrustProcessForCurrentAppAsync());
-    t.then([dispatcher]()
+    auto t = create_task(Windows::ApplicationModel::Package::Current->GetAppListEntriesAsync());
+    t.then([dispatcher](IVectorView <Windows::ApplicationModel::Core::AppListEntry^>^ entries)
     {
-        dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new DispatchedHandler([=]()
+        auto entry = entries->GetAt(1);
+        auto t2 = create_task(entry->LaunchAsync());
+        t2.then([dispatcher](bool)
         {
-            Windows::UI::Xaml::Application::Current->Exit();
-        }));
+            dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new DispatchedHandler([=]()
+            {
+                Windows::UI::Xaml::Application::Current->Exit();
+            }));
+        });
     });
 }
 
