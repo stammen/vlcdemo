@@ -19,10 +19,11 @@ echo Download complete.
 
 echo Installing VLC...
 call vlc-2.2.4-win64.exe /L=1033 /S
-Install complete.
+echo Install complete.
 
 echo Copying VLC files to project...
 xcopy /iycqs "%programfiles%\VideoLAN\VLC" .\vlcdemo\VLC
+echo Deleting uninstall.exe from .\vlcdemo\VLC
 rm .\vlcdemo\VLC\uninstall.exe
 echo Copy complete.
 
