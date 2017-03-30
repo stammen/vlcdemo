@@ -35,45 +35,26 @@ void vlcdemo::MainPage::StoreButton_Click(Platform::Object^ sender, Windows::UI:
     Windows::ApplicationModel::FullTrustProcessLauncher::LaunchFullTrustProcessForCurrentAppAsync();
     auto uri = ref new Windows::Foundation::Uri(L"https://www.microsoft.com/en-us/store/p/vlc/9nblggh4vvnh");
     concurrency::task<bool> launchUriOperation(Windows::System::Launcher::LaunchUriAsync(uri));
-    launchUriOperation.then([dispatcher](bool result)
+    launchUriOperation.then([this, dispatcher](bool result)
     {
-        dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new DispatchedHandler([=]()
-        {
-            Windows::UI::Xaml::Application::Current->Exit();
-        }));
+        StartVLC(dispatcher);
     });
 }
 
 void vlcdemo::MainPage::HyperlinkButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
     auto dispatcher = Window::Current->CoreWindow->Dispatcher;
-    auto t = create_task(Windows::ApplicationModel::Package::Current->GetAppListEntriesAsync());
-    t.then([dispatcher](IVectorView <Windows::ApplicationModel::Core::AppListEntry^>^ entries)
-    {
-        auto entry = entries->GetAt(1);
-        auto t2 = create_task(entry->LaunchAsync());
-        t2.then([dispatcher](bool)
-        {
-            dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new DispatchedHandler([=]()
-            {
-                Windows::UI::Xaml::Application::Current->Exit();
-            }));
-        });
-    });
+    StartVLC(dispatcher);
 }
 
 void vlcdemo::MainPage::DonateButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
     auto dispatcher = Window::Current->CoreWindow->Dispatcher;
-    Windows::ApplicationModel::FullTrustProcessLauncher::LaunchFullTrustProcessForCurrentAppAsync();
     auto uri = ref new Windows::Foundation::Uri(L"http://www.videolan.org/contribute.html");
     concurrency::task<bool> launchUriOperation(Windows::System::Launcher::LaunchUriAsync(uri));
-    launchUriOperation.then([dispatcher](bool result)
+    launchUriOperation.then([this, dispatcher](bool result)
     {
-        dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new DispatchedHandler([=]()
-        {
-            Windows::UI::Xaml::Application::Current->Exit();
-        }));
+        StartVLC(dispatcher);
     });
 }
 
@@ -100,11 +81,26 @@ void vlcdemo::MainPage::InstallAdButton_Click(Platform::Object^ sender, Windows:
     auto dispatcher = Window::Current->CoreWindow->Dispatcher;
     Windows::ApplicationModel::FullTrustProcessLauncher::LaunchFullTrustProcessForCurrentAppAsync();
     concurrency::task<bool> launchUriOperation(Windows::System::Launcher::LaunchUriAsync(uri));
-    launchUriOperation.then([dispatcher](bool result)
+    launchUriOperation.then([this, dispatcher](bool result)
     {
-        dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new DispatchedHandler([=]()
-        {
-            Windows::UI::Xaml::Application::Current->Exit();
-        }));
+        StartVLC(dispatcher);
     });
 }
+
+void vlcdemo::MainPage::StartVLC(Windows::UI::Core::CoreDispatcher^ dispatcher)
+{
+    auto t = create_task(Windows::ApplicationModel::Package::Current->GetAppListEntriesAsync());
+    t.then([dispatcher](IVectorView <Windows::ApplicationModel::Core::AppListEntry^>^ entries)
+    {
+        auto entry = entries->GetAt(1);
+        auto t2 = create_task(entry->LaunchAsync());
+        t2.then([dispatcher](bool)
+        {
+            dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new DispatchedHandler([=]()
+            {
+                Windows::UI::Xaml::Application::Current->Exit();
+            }));
+        });
+    });
+}
+
