@@ -31,7 +31,7 @@ Although the UWP VLC demo did not use the Desktop App Converter to create the de
 1. Run the Desktop App Converter as administrator.
 1. Convert the VLC player to a Centennial App with the Desktop App Converter. The command below assumes you are in the directory where you downloaded the VLC installer.
     
-``` c++
+``` console
 DesktopAppConverter.exe -Installer .\vlc-2.2.4-win32.exe -InstallerArguments "/L=1033 /S" -Destination .\output -PackageName "VLC" -Publisher "CN=vlc" -Version 2.2.4.0 -MakeAppx -Verbose -Sign
 ```
 * The InstallerArguments "/L=1033 /S" specify the english version of VLC (/L=1033) and a silent install (/S)
@@ -71,5 +71,23 @@ You can now launch the Centennial version of VLC
 
 The source code to the UWP VLC demo app is currently in a [private github repo](https://github.com/stammen/vlcdemo). Please email <dalestam@microsoft.com> with your github username to obtain
 access to the source code.
+
+1. Clone the vlcdemo github repo.
+
+    ``` console
+    git clone https://github.com/stammen/vlcdemo.git
+    ```
+    or with SSH
+    ``` console
+    git clone git@github.com:stammen/vlcdemo.git
+    ```
+
+1. cd vlcdemo
+
+1. Install the VLC player files into the project
+    ``` console
+    .\get-vlc.bat
+    ```
+
 
 
