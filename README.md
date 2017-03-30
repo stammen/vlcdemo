@@ -162,6 +162,9 @@ Only the UWP app will appear in the Windows applications list. We launch the Win
 
 Note: Some work will be needed with the above VLC Application tag to add the media filetypes supported by VLC. For example, if a user double clicks on a .wav file, VLC should be launched to play the file.
 
+Note: Specifying multiple Application tags in the Applications section of the Package.appxmanifest is only allowed for Centennial Apps. Pure UWP apps will fail WACK if more than one application is specified 
+in the Applications section.
+
 Note: The tiles specified in the Package.appxmanifest file were copied from the Centennial version of VLC generated with the Desktop App Converter.
 
 ### Launching VLC from the UWP App ###
