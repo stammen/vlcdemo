@@ -67,7 +67,7 @@ You can now launch the Centennial version of VLC
 
 ![Launch VLC](Images/installed.png "Launch VLC")
 
-##Building the UWP VLC Demo App##
+## Building the UWP VLC Demo App ##
 
 The source code to the UWP VLC demo app is currently in a [private github repo](https://github.com/stammen/vlcdemo). Please email <dalestam@microsoft.com> with your github username to obtain
 access to the source code.
