@@ -127,7 +127,7 @@ Select **XML (Text) Editor** from the list. Click **OK**.
 
 ![Manifest Open With...](Images/manifest-editor.png "Manifest Open With...")
 
-In the XML editor add the following XML schemas to the <Package> tag
+In the XML editor add the following XML schemas to the Package tag
 
 ```xml
     xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
