@@ -116,7 +116,8 @@ Now whenever a build of the vlcdemo project occurs, the VLC app files will be au
 
 ### Adding the Win32 VLC application to the App Manifest ###
 
-The vlcdemo UWP app needs to be able to launch the Win32 VLC app as a FullTrust application. In order to do this, the Win32 VLC app needs to be added to the Package.appxmanifest file.
+The vlcdemo UWP app needs to be able to launch the Win32 vlc.exe app as a FullTrust application. In order to do this, the Win32 vlc.exe app needs to be added to the Package.appxmanifest file.
+
 The xml of the Package.appxmanifest file must be edited with a text editor. 
 
 Right click on the Package.appxmanifest file file in the vlcdemo project. Select **Open With...** from the pop-up menu.
