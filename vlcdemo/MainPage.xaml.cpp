@@ -32,7 +32,6 @@ MainPage::MainPage()
 void vlcdemo::MainPage::StoreButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
     auto dispatcher = Window::Current->CoreWindow->Dispatcher;
-    Windows::ApplicationModel::FullTrustProcessLauncher::LaunchFullTrustProcessForCurrentAppAsync();
     auto uri = ref new Windows::Foundation::Uri(L"https://www.microsoft.com/en-us/store/p/vlc/9nblggh4vvnh");
     concurrency::task<bool> launchUriOperation(Windows::System::Launcher::LaunchUriAsync(uri));
     launchUriOperation.then([this, dispatcher](bool result)
@@ -49,13 +48,8 @@ void vlcdemo::MainPage::HyperlinkButton_Click(Platform::Object^ sender, Windows:
 
 void vlcdemo::MainPage::DonateButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-    auto dispatcher = Window::Current->CoreWindow->Dispatcher;
     auto uri = ref new Windows::Foundation::Uri(L"http://www.videolan.org/contribute.html");
-    concurrency::task<bool> launchUriOperation(Windows::System::Launcher::LaunchUriAsync(uri));
-    launchUriOperation.then([this, dispatcher](bool result)
-    {
-        StartVLC(dispatcher);
-    });
+    LoadUrl(uri);
 }
 
 void vlcdemo::MainPage::InstallAdButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
@@ -78,13 +72,7 @@ void vlcdemo::MainPage::InstallAdButton_Click(Platform::Object^ sender, Windows:
         uri = ref new Windows::Foundation::Uri(L"ms-windows-store://pdp/?productid=9WZDNCRFJ1XX&referrer=vlcdemo");
     }
 
-    auto dispatcher = Window::Current->CoreWindow->Dispatcher;
-    Windows::ApplicationModel::FullTrustProcessLauncher::LaunchFullTrustProcessForCurrentAppAsync();
-    concurrency::task<bool> launchUriOperation(Windows::System::Launcher::LaunchUriAsync(uri));
-    launchUriOperation.then([this, dispatcher](bool result)
-    {
-        StartVLC(dispatcher);
-    });
+    LoadUrl(uri);
 }
 
 void vlcdemo::MainPage::StartVLC(Windows::UI::Core::CoreDispatcher^ dispatcher)
@@ -101,6 +89,17 @@ void vlcdemo::MainPage::StartVLC(Windows::UI::Core::CoreDispatcher^ dispatcher)
                 Windows::UI::Xaml::Application::Current->Exit();
             }));
         });
+    });
+}
+
+
+void vlcdemo::MainPage::LoadUrl(Windows::Foundation::Uri^ uri)
+{
+    auto dispatcher = Window::Current->CoreWindow->Dispatcher;
+    concurrency::task<bool> launchUriOperation(Windows::System::Launcher::LaunchUriAsync(uri));
+    launchUriOperation.then([this, dispatcher](bool result)
+    {
+        StartVLC(dispatcher);
     });
 }
 

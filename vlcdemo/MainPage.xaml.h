@@ -23,5 +23,6 @@ namespace vlcdemo
       void StoreButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
       void HyperlinkButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
       void StartVLC(Windows::UI::Core::CoreDispatcher^ dispatcher);
+      void vlcdemo::MainPage::LoadUrl(Windows::Foundation::Uri^ uri);
     };
 }
