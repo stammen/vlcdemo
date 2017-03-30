@@ -92,7 +92,6 @@ void vlcdemo::MainPage::StartVLC(Windows::UI::Core::CoreDispatcher^ dispatcher)
     });
 }
 
-
 void vlcdemo::MainPage::LoadUrl(Windows::Foundation::Uri^ uri)
 {
     auto dispatcher = Window::Current->CoreWindow->Dispatcher;
