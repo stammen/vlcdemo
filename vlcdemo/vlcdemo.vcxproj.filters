@@ -8,6 +8,9 @@
       <UniqueIdentifier>d7c68faa-6c2a-4d80-ab3d-db2860d3a4e3</UniqueIdentifier>
       <Extensions>bmp;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
     </Filter>
+    <Filter Include="Assets\Images">
+      <UniqueIdentifier>{a03ae03e-1ec9-41d4-897b-e9102135cb2a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -64,6 +67,27 @@
     </Image>
     <Image Include="Assets\Wide310x150Logo.scale-200.png">
       <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Images\CandyCrush-header.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\CandyCrush-logo.jpeg">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\fitbit-header.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\fitbit-logo.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\hulu-header.jpg">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\Hulu-logo.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\VLC_Icon.svg.png">
+      <Filter>Assets\Images</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

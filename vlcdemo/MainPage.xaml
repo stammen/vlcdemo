@@ -7,13 +7,115 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Orientation="Vertical">
-            <Image Source="Assets\windows_10_devices.jpg"></Image>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-                <Button Name="VLCButton" Content="Launch VLC" Click="VLCButton_Click" ></Button>
-                <Button Name="StoreButton" Content="Get VLC" Click="StoreButton_Click" Margin="20,0,0,0"></Button>
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+
+        <Style x:Key="AppTitle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="FontSize" Value="24" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="#fffbfbfb" BorderBrush="#FFe7e7e7" BorderThickness="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!--
+        <Grid Background="#FFd0d0d0" BorderBrush="#FFc8c8c8" BorderThickness="0,0,0,1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Image Source="Assets/Images/VLC_Icon.svg.png" Height="80" Margin="24"/>
+                <TextBlock Foreground="Black" Style="{StaticResource AppTitle}" Text="Thanks for your support!" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </StackPanel>
-        </StackPanel>
+        </Grid>
+        -->
+        <Grid Grid.Row="1" Background="#FFe0e0e0">
+            <StackPanel Margin="24">
+                <TextBlock Style="{StaticResource AppTitle}" Margin="0,0,0,12" Text="Thanks for installing VLC, we really appreciate it!" />
+                <TextBlock Margin="0,0,0,12" TextWrapping="WrapWholeWords" Text="VLC is free and open-source and we rely on the generosity of our beloved community to make VLC better and better. You'll only see this screen once, but please consider donating via PayPal or installing one of the apps from our sponsors below." />
+                <TextBlock Margin="0,0,0,12" TextWrapping="WrapWholeWords" Text="Thanks again for your generosity and continued support of VLC and VideoLan!" />
+                <Button Margin="0,12,0,0" Content="Donate" Background="#FFF48B00" Click="DonateButton_Click"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2" Margin="0,24,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="240" />
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+
+            <Image Stretch="UniformToFill" Source="Assets/Images/hulu-header.jpg" Margin="24,0,12,0" />
+            <Image Stretch="Uniform" Source="Assets/Images/Hulu-logo.png" Width="120" Margin="24,0,12,0"/>
+            <StackPanel Grid.Row="1" Background="#ff66aa33" Margin="24,0,12,0">
+                <TextBlock Foreground="White" Style="{StaticResource AppTitle}" Margin="12,12,12,6" Text="Hulu" />
+                <TextBlock Foreground="White" Margin="12,6" TextWrapping="WrapWholeWords" Text="Hulu gives you unlimited instant streaming of premium original series, current-season episodes, full seasons of hit TV shows, popular movies, kids programming and more." />
+            </StackPanel>
+            <Grid Grid.Row="2" Background="#ff66aa33" Margin="24,0,12,0">
+                <Button Foreground="White" Margin="12,6,12,12" Name="HuluAd" Content="Install now" Click="InstallAdButton_Click"/>
+            </Grid>
+
+
+            <Image Grid.Column="1" Stretch="UniformToFill" Source="Assets/Images/CandyCrush-header.png" Margin="12,0" />
+            <Image Grid.Column="1" Stretch="Uniform" Source="Assets/Images/CandyCrush-logo.jpeg" Width="120" Margin="12,0" />
+            <StackPanel Grid.Column="1" Grid.Row="1" Background="#fffa4092" Margin="12,0">
+                <TextBlock Style="{StaticResource AppTitle}" Foreground="White" Margin="12,12,12,6" Text="Candy Crush Soda Saga" />
+                <TextBlock Foreground="White" Margin="12,6" TextWrapping="WrapWholeWords" Text="Candy Crush Soda Saga is the latest game from the makers of the legendary Candy Crush Saga. New candies, more divine combinations and challenging new game modes brimming with purple soda and Candy Bears!" />
+            </StackPanel>
+            <Grid Grid.Row="2" Grid.Column="1" Background="#fffa4092" Margin="12,0">
+                <Button Foreground="White" Margin="12,6,12,12" Name="CandyCrushAd" Content="Install now" Click="InstallAdButton_Click"/>
+            </Grid>
+
+            <Image Grid.Column="2" Stretch="UniformToFill" Source="Assets/Images/fitbit-header.png" Margin="12,0,24,0"/>
+            <Image Grid.Column="2" Stretch="Uniform" Source="Assets/Images/fitbit-logo.png" Width="120"  Margin="12,0,24,0"/>
+            <StackPanel Grid.Column="2" Grid.Row="1" Background="#ff0078d7" Margin="12,0,24,0">
+                <TextBlock Style="{StaticResource AppTitle}" Foreground="White" Margin="12,12,12,6" Text="Fitbit" />
+                <TextBlock Foreground="White" Margin="12,6" TextWrapping="WrapWholeWords" Text="Live a healthier, more active life with Fitbit, the world's leading app for tracking all-day activity, workouts, sleep and more. " />
+            </StackPanel>
+            <Grid Grid.Row="2" Grid.Column="2" Background="#ff0078d7" Margin="12,0,24,0">
+                <Button Foreground="White" Margin="12,6,12,12"  Name="FitBitAd" Content="Install now" Click="InstallAdButton_Click"/>
+            </Grid>
+
+            <Grid Margin="24,0,12,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="240" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+            </Grid>
+
+            <Grid Grid.Column="1" Margin="12,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="240" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+            </Grid>
+
+            <Grid Grid.Column="2" Margin="12,0,24,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="240" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+            </Grid>
+
+        </Grid>
+        <Grid Grid.Row="3">
+            <HyperlinkButton Content="No thanks" HorizontalAlignment="Right" Margin="24" Click="HyperlinkButton_Click"/>
+        </Grid>
     </Grid>
 </Page>

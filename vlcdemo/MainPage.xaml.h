@@ -18,7 +18,9 @@ namespace vlcdemo
 		MainPage();
 
   private:
-    void StoreButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
-    void VLCButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+      void DonateButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+      void InstallAdButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+      void StoreButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+      void HyperlinkButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
     };
 }

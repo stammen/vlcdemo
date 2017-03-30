@@ -44,11 +44,58 @@ void vlcdemo::MainPage::StoreButton_Click(Platform::Object^ sender, Windows::UI:
     });
 }
 
-void vlcdemo::MainPage::VLCButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+void vlcdemo::MainPage::HyperlinkButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
     auto dispatcher = Window::Current->CoreWindow->Dispatcher;
     auto t = create_task(Windows::ApplicationModel::FullTrustProcessLauncher::LaunchFullTrustProcessForCurrentAppAsync());
     t.then([dispatcher]()
+    {
+        dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new DispatchedHandler([=]()
+        {
+            Windows::UI::Xaml::Application::Current->Exit();
+        }));
+    });
+}
+
+void vlcdemo::MainPage::DonateButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+    auto dispatcher = Window::Current->CoreWindow->Dispatcher;
+    Windows::ApplicationModel::FullTrustProcessLauncher::LaunchFullTrustProcessForCurrentAppAsync();
+    auto uri = ref new Windows::Foundation::Uri(L"http://www.videolan.org/contribute.html");
+    concurrency::task<bool> launchUriOperation(Windows::System::Launcher::LaunchUriAsync(uri));
+    launchUriOperation.then([dispatcher](bool result)
+    {
+        dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new DispatchedHandler([=]()
+        {
+            Windows::UI::Xaml::Application::Current->Exit();
+        }));
+    });
+}
+
+void vlcdemo::MainPage::InstallAdButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+    auto button = dynamic_cast<Button^>(sender);
+    auto name = button->Name;
+
+    Windows::Foundation::Uri^ uri;
+    
+    if (name == L"HuluAd")
+    {
+        uri = ref new Windows::Foundation::Uri(L"ms-windows-store://pdp/?productid=9WZDNCRFJ3L1&referrer=vlcdemo");
+    }
+    else if (name == L"CandyCrushAd")
+    {
+        uri = ref new Windows::Foundation::Uri(L"ms-windows-store://pdp/?productid=9NBLGGH18846&referrer=vlcdemo");
+    }
+    else if (name == L"FitBitAd")
+    {
+        uri = ref new Windows::Foundation::Uri(L"ms-windows-store://pdp/?productid=9WZDNCRFJ1XX&referrer=vlcdemo");
+    }
+
+    auto dispatcher = Window::Current->CoreWindow->Dispatcher;
+    Windows::ApplicationModel::FullTrustProcessLauncher::LaunchFullTrustProcessForCurrentAppAsync();
+    concurrency::task<bool> launchUriOperation(Windows::System::Launcher::LaunchUriAsync(uri));
+    launchUriOperation.then([dispatcher](bool result)
     {
         dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new DispatchedHandler([=]()
         {

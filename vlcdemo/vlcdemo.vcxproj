@@ -180,6 +180,13 @@
     <Image Include="Assets\AppSplashScreen.scale-200.png" />
     <Image Include="Assets\AppStoreLogo.scale-200.png" />
     <Image Include="Assets\AppWideTile.scale-200.png" />
+    <Image Include="Assets\Images\CandyCrush-header.png" />
+    <Image Include="Assets\Images\CandyCrush-logo.jpeg" />
+    <Image Include="Assets\Images\fitbit-header.png" />
+    <Image Include="Assets\Images\fitbit-logo.png" />
+    <Image Include="Assets\Images\hulu-header.jpg" />
+    <Image Include="Assets\Images\Hulu-logo.png" />
+    <Image Include="Assets\Images\VLC_Icon.svg.png" />
     <Image Include="Assets\LockScreenLogo.scale-200.png" />
     <Image Include="Assets\SplashScreen.scale-200.png" />
     <Image Include="Assets\Square150x150Logo.scale-200.png" />
