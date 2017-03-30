@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities" xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10" IgnorableNamespaces="uap mp rescap desktop">
-  <Identity Name="9f342ee6-f5d9-4ac3-98d1-2c4bcd7a5c0f" Publisher="CN=dalestam" Version="1.0.8.0" />
+  <Identity Name="9f342ee6-f5d9-4ac3-98d1-2c4bcd7a5c0f" Publisher="CN=dalestam" Version="1.0.10.0" />
   <mp:PhoneIdentity PhoneProductId="9f342ee6-f5d9-4ac3-98d1-2c4bcd7a5c0f" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>VLC</DisplayName>
@@ -23,7 +23,7 @@
             <uap:ShowOn Tile="square310x310Logo" />
           </uap:ShowNameOnTiles>
         </uap:DefaultTile>
-        <uap:SplashScreen Image="Assets\AppSplashScreen.png" />
+        <uap:SplashScreen Image="Assets\AppSplashScreen.png" BackgroundColor="black" />
       </uap:VisualElements>
       <Extensions>
         <desktop:Extension Category="windows.fullTrustProcess" Executable="VLC\vlc.exe" />
