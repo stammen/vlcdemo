@@ -22,7 +22,7 @@ The work to build this demo explored 2 areas:
 
 The UWP VLC Demo app was built without using the Desktop App Converter. All of the VLC app files are contained in the UWP app. The Win32 VLC player app is launched from wihin the UWP app as a FullTrust process.
 
-## How to convert VLC to a Centennial App using the Desktop App Converter##
+## How to convert VLC to a Centennial App using the Desktop App Converter ##
 
 Although the UWP VLC demo did not use the Desktop App Converter to create the demo app, the process for converting VLC to a Centennial App is documented below.
 
@@ -116,7 +116,8 @@ Now whenever a build of the vlcdemo project occurs, the VLC app files will be au
 
 ### Adding the Win32 VLC application to the App Manifest ###
 
-The vlcdemo UWP app needs to be able to launch the Win32 VLC app as a FullTrust application. In order to do this, the Win32 VLC app needs to be added to the Package.appxmanifest file.
+The vlcdemo UWP app needs to be able to launch the Win32 vlc.exe app as a FullTrust application. In order to do this, the Win32 vlc.exe app needs to be added to the Package.appxmanifest file.
+
 The xml of the Package.appxmanifest file must be edited with a text editor. 
 
 Right click on the Package.appxmanifest file file in the vlcdemo project. Select **Open With...** from the pop-up menu.
@@ -127,7 +128,7 @@ Select **XML (Text) Editor** from the list. Click **OK**.
 
 ![Manifest Open With...](Images/manifest-editor.png "Manifest Open With...")
 
-In the XML editor add the following XML schemas to the <Package> tag
+In the XML editor add the following XML schemas to the Package tag
 
 ```xml
     xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
