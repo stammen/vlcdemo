@@ -14,7 +14,7 @@ if exist vlc-2.2.4-win64.exe (
 )
        
 echo Downloading vlc 2.2.4...    
-call curl -O -L %VLC_URL%
+call powershell Invoke-WebRequest -OutFile vlc-2.2.4-win64.exe %VLC_URL%
 echo Download complete.
 
 echo Installing VLC...
