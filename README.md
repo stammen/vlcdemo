@@ -22,7 +22,7 @@ The work to build this demo explored 2 areas:
 
 The UWP VLC Demo app was built without using the Desktop App Converter. All of the VLC app files are contained in the UWP app. The Win32 VLC player app is launched from wihin the UWP app as a FullTrust process.
 
-## How to convert VLC to a Centennial App using the Desktop App Converter##
+## How to convert VLC to a Centennial App using the Desktop App Converter ##
 
 Although the UWP VLC demo did not use the Desktop App Converter to create the demo app, the process for converting VLC to a Centennial App is documented below.
 
