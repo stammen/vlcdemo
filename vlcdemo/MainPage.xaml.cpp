@@ -6,13 +6,18 @@
 #include "pch.h"
 #include "MainPage.xaml.h"
 #include <ppltasks.h>
+#include <io.h>
+#include <string>
+#include <fcntl.h>  
 
 using namespace vlcdemo;
 
 using namespace concurrency;
 using namespace Platform;
+using namespace Windows::ApplicationModel::Core;
 using namespace Windows::Foundation;
 using namespace Windows::Foundation::Collections;
+using namespace Windows::Storage;
 using namespace Windows::UI::Core;
 using namespace Windows::UI::Xaml;
 using namespace Windows::UI::Xaml::Controls;
@@ -26,19 +31,24 @@ using namespace Windows::UI::Xaml::Navigation;
 
 MainPage::MainPage()
 {
-	InitializeComponent();
+    auto folder = Windows::Storage::ApplicationData::Current->LocalFolder;
+    std::wstring path = folder->Path->Data();
+    path += L"\\vlcdemo-firstrun.txt";
+
+    int fh;
+    auto e = _wsopen_s(&fh, path.c_str(), _O_RDONLY, _SH_DENYNO, _S_IREAD | _S_IWRITE);
+    if (fh == -1)
+    {
+        InitializeComponent();
+        folder->CreateFileAsync("vlcdemo-firstrun.txt", CreationCollisionOption::ReplaceExisting);
+    }
+    else
+    {
+        _close(fh);
+        StartVLC(Window::Current->CoreWindow->Dispatcher);
+    }
 }
 
-void vlcdemo::MainPage::StoreButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
-{
-    auto dispatcher = Window::Current->CoreWindow->Dispatcher;
-    auto uri = ref new Windows::Foundation::Uri(L"https://www.microsoft.com/en-us/store/p/vlc/9nblggh4vvnh");
-    concurrency::task<bool> launchUriOperation(Windows::System::Launcher::LaunchUriAsync(uri));
-    launchUriOperation.then([this, dispatcher](bool result)
-    {
-        StartVLC(dispatcher);
-    });
-}
 
 void vlcdemo::MainPage::HyperlinkButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
@@ -49,6 +59,7 @@ void vlcdemo::MainPage::HyperlinkButton_Click(Platform::Object^ sender, Windows:
 void vlcdemo::MainPage::DonateButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
     auto uri = ref new Windows::Foundation::Uri(L"http://www.videolan.org/contribute.html");
+    HyperlinkButton->Content = L"Launch VLC";
     LoadUrl(uri);
 }
 
@@ -72,6 +83,7 @@ void vlcdemo::MainPage::InstallAdButton_Click(Platform::Object^ sender, Windows:
         uri = ref new Windows::Foundation::Uri(L"ms-windows-store://pdp/?productid=9WZDNCRFJ1XX&referrer=vlcdemo");
     }
 
+    HyperlinkButton->Content = L"Launch VLC";
     LoadUrl(uri);
 }
 
@@ -80,25 +92,38 @@ void vlcdemo::MainPage::StartVLC(Windows::UI::Core::CoreDispatcher^ dispatcher)
     auto t = create_task(Windows::ApplicationModel::Package::Current->GetAppListEntriesAsync());
     t.then([dispatcher](IVectorView <Windows::ApplicationModel::Core::AppListEntry^>^ entries)
     {
-        auto entry = entries->GetAt(1);
-        auto t2 = create_task(entry->LaunchAsync());
-        t2.then([dispatcher](bool)
+        AppListEntry^ vlcEntry = nullptr;
+
+        for (AppListEntry^ entry : entries)
         {
-            dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new DispatchedHandler([=]()
+            auto info = entry->DisplayInfo;
+            if (info->DisplayName == L"vlc.exe")
             {
-                Windows::UI::Xaml::Application::Current->Exit();
-            }));
-        });
+                vlcEntry = entry;
+                break;
+            }
+        }
+
+        if (vlcEntry)
+        {
+            auto t2 = create_task(vlcEntry->LaunchAsync());
+            t2.then([dispatcher](bool)
+            {
+                dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new DispatchedHandler([=]()
+                {
+                    Windows::UI::Xaml::Application::Current->Exit();
+                }));
+            });
+        }
     });
 }
 
 void vlcdemo::MainPage::LoadUrl(Windows::Foundation::Uri^ uri)
 {
-    auto dispatcher = Window::Current->CoreWindow->Dispatcher;
     concurrency::task<bool> launchUriOperation(Windows::System::Launcher::LaunchUriAsync(uri));
-    launchUriOperation.then([this, dispatcher](bool result)
+    launchUriOperation.then([this](bool result)
     {
-        StartVLC(dispatcher);
+        // update analytics here
     });
 }
 

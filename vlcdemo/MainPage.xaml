@@ -115,7 +115,7 @@
 
         </Grid>
         <Grid Grid.Row="3">
-            <HyperlinkButton Content="No thanks" HorizontalAlignment="Right" Margin="24" Click="HyperlinkButton_Click"/>
+            <HyperlinkButton Name="HyperlinkButton" Content="No thanks" HorizontalAlignment="Right" Margin="24" Click="HyperlinkButton_Click"/>
         </Grid>
     </Grid>
 </Page>
