@@ -6,9 +6,9 @@
 #include "pch.h"
 #include "MainPage.xaml.h"
 #include <ppltasks.h>
+#include <fcntl.h>  
 #include <io.h>
 #include <string>
-#include <fcntl.h>  
 
 using namespace vlcdemo;
 
@@ -19,6 +19,7 @@ using namespace Windows::Foundation;
 using namespace Windows::Foundation::Collections;
 using namespace Windows::Storage;
 using namespace Windows::UI::Core;
+using namespace Windows::UI::ViewManagement;
 using namespace Windows::UI::Xaml;
 using namespace Windows::UI::Xaml::Controls;
 using namespace Windows::UI::Xaml::Controls::Primitives;
@@ -31,22 +32,10 @@ using namespace Windows::UI::Xaml::Navigation;
 
 MainPage::MainPage()
 {
-    auto folder = Windows::Storage::ApplicationData::Current->LocalFolder;
-    std::wstring path = folder->Path->Data();
-    path += L"\\vlcdemo-firstrun.txt";
-
-    int fh;
-    auto e = _wsopen_s(&fh, path.c_str(), _O_RDONLY, _SH_DENYNO, _S_IREAD | _S_IWRITE);
-    if (fh == -1)
-    {
-        InitializeComponent();
-        folder->CreateFileAsync("vlcdemo-firstrun.txt", CreationCollisionOption::ReplaceExisting);
-    }
-    else
-    {
-        _close(fh);
-        StartVLC(Window::Current->CoreWindow->Dispatcher);
-    }
+    InitializeComponent();
+    Size size(900, 820);
+    ApplicationView^ view = ApplicationView::GetForCurrentView();
+    auto r = view->TryResizeView(Size(900, 820));
 }
 
 
@@ -97,7 +86,7 @@ void vlcdemo::MainPage::StartVLC(Windows::UI::Core::CoreDispatcher^ dispatcher)
         for (AppListEntry^ entry : entries)
         {
             auto info = entry->DisplayInfo;
-            if (info->DisplayName == L"vlc.exe")
+            if (info->DisplayName == L"VLC")
             {
                 vlcEntry = entry;
                 break;
@@ -107,7 +96,7 @@ void vlcdemo::MainPage::StartVLC(Windows::UI::Core::CoreDispatcher^ dispatcher)
         if (vlcEntry)
         {
             auto t2 = create_task(vlcEntry->LaunchAsync());
-            t2.then([dispatcher](bool)
+            t2.then([dispatcher](bool result)
             {
                 dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new DispatchedHandler([=]()
                 {

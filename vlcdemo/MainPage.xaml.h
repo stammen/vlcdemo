@@ -16,12 +16,12 @@ namespace vlcdemo
 	{
 	public:
 		MainPage();
+        static void StartVLC(Windows::UI::Core::CoreDispatcher^ dispatcher);
 
   private:
       void DonateButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
       void InstallAdButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
       void HyperlinkButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
-      void StartVLC(Windows::UI::Core::CoreDispatcher^ dispatcher);
       void vlcdemo::MainPage::LoadUrl(Windows::Foundation::Uri^ uri);
     };
 }

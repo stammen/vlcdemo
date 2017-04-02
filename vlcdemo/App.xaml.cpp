@@ -5,6 +5,8 @@
 
 #include "pch.h"
 #include "MainPage.xaml.h"
+#include <fcntl.h>  
+#include <io.h>
 
 using namespace vlcdemo;
 
@@ -13,6 +15,8 @@ using namespace Windows::ApplicationModel;
 using namespace Windows::ApplicationModel::Activation;
 using namespace Windows::Foundation;
 using namespace Windows::Foundation::Collections;
+using namespace Windows::Storage;
+using namespace Windows::UI::ViewManagement;
 using namespace Windows::UI::Xaml;
 using namespace Windows::UI::Xaml::Controls;
 using namespace Windows::UI::Xaml::Controls::Primitives;
@@ -50,6 +54,37 @@ void App::OnLaunched(Windows::ApplicationModel::Activation::LaunchActivatedEvent
         rootFrame = ref new Frame();
 
         rootFrame->NavigationFailed += ref new Windows::UI::Xaml::Navigation::NavigationFailedEventHandler(this, &App::OnNavigationFailed);
+        
+#if 0
+        if (e->PreviousExecutionState != ApplicationExecutionState::Running)
+        {
+            auto folder = Windows::Storage::ApplicationData::Current->LocalFolder;
+            std::wstring path = folder->Path->Data();
+            path += L"\\vlcdemo-firstrun.txt";
+            int fh;
+
+            auto e = _wsopen_s(&fh, path.c_str(), _O_RDONLY, _SH_DENYNO, _S_IREAD | _S_IWRITE);
+            if (fh != -1)
+            {
+                Size size(620, 300);
+                ApplicationView^ view = ApplicationView::GetForCurrentView();
+                view->SetPreferredMinSize(size);
+                view->PreferredLaunchViewSize = size;
+                view->PreferredLaunchWindowingMode = ApplicationViewWindowingMode::PreferredLaunchViewSize;
+                auto r = view->TryResizeView(size);
+                _close(fh);
+                MainPage::StartVLC(Window::Current->CoreWindow->Dispatcher);
+                return;
+            }
+            else
+            {
+                Size size(900, 820);
+                ApplicationView^ view = ApplicationView::GetForCurrentView();
+                auto r = view->TryResizeView(Size(900, 820));
+                folder->CreateFileAsync("vlcdemo-firstrun.txt", CreationCollisionOption::ReplaceExisting);
+            }
+        }
+#endif
 
         if (e->PreviousExecutionState == ApplicationExecutionState::Terminated)
         {
@@ -89,6 +124,25 @@ void App::OnLaunched(Windows::ApplicationModel::Activation::LaunchActivatedEvent
         }
     }
 }
+
+void App::OnActivated(Windows::ApplicationModel::Activation::IActivatedEventArgs^ e)
+{
+    if (e->Kind == ActivationKind::Protocol)
+    {
+        Frame^ rootFrame = ref new Frame();
+
+        if (rootFrame->Content == nullptr)
+        {
+            rootFrame->Navigate(TypeName(MainPage::typeid));
+        }
+
+        // Place the frame in the current Window
+        Window::Current->Content = rootFrame;
+        // Ensure the current window is active
+        Window::Current->Activate();
+    }
+}
+
 
 /// <summary>
 /// Invoked when application execution is being suspended.  Application state is saved
