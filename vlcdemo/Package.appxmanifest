@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities" xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10" IgnorableNamespaces="uap mp rescap desktop">
-  <Identity Name="9f342ee6-f5d9-4ac3-98d1-2c4bcd7a5c0f" Publisher="CN=dalestam" Version="1.0.21.0" />
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap2="http://schemas.microsoft.com/appx/manifest/uap/windows10/2" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities" xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10" IgnorableNamespaces="uap uap2 uap3 mp rescap desktop">
+  <Identity Name="9f342ee6-f5d9-4ac3-98d1-2c4bcd7a5c0f" Publisher="CN=vlc" Version="1.0.21.0" />
   <mp:PhoneIdentity PhoneProductId="9f342ee6-f5d9-4ac3-98d1-2c4bcd7a5c0f" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>VLC</DisplayName>
@@ -14,7 +14,7 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="vlclauncher" Executable="launcher2.exe" EntryPoint="Windows.FullTrustApplication">
+    <Application Id="vlclauncher" Executable="vlclauncher.exe" EntryPoint="Windows.FullTrustApplication">
       <uap:VisualElements DisplayName="VLC" Square150x150Logo="Assets\AppMedTile.png" Square44x44Logo="Assets\AppList.png" Description="VLC Launcher" BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\AppWideTile.png" Square310x310Logo="Assets\AppLargeTile.png">
           <uap:ShowNameOnTiles>
@@ -25,37 +25,1290 @@
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\AppSplashScreen.png" BackgroundColor="black" />
       </uap:VisualElements>
-    </Application>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="vlcdemo.App">
-      <uap:VisualElements DisplayName="VLCDemo" Square150x150Logo="Assets\AppMedTile.png" Square44x44Logo="Assets\AppList.png" Description="VLC" BackgroundColor="transparent" AppListEntry="none">
-        <uap:DefaultTile Wide310x150Logo="Assets\AppWideTile.png" Square310x310Logo="Assets\AppLargeTile.png">
-          <uap:ShowNameOnTiles>
-            <uap:ShowOn Tile="square150x150Logo" />
-            <uap:ShowOn Tile="wide310x150Logo" />
-            <uap:ShowOn Tile="square310x310Logo" />
-          </uap:ShowNameOnTiles>
-        </uap:DefaultTile>
-        <uap:SplashScreen Image="Assets\AppSplashScreen.png" BackgroundColor="black" />
-      </uap:VisualElements>
       <Extensions>
-        <uap:Extension Category="windows.protocol">
-          <uap:Protocol Name="vlc-ads">
-            <uap:DisplayName>VLC-Ads</uap:DisplayName>
-          </uap:Protocol>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="3g2" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.3g2</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="3ga" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.3ga</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="3gp" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.3gp</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="3gp2" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.3gp2</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="3gpp" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.3gpp</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="669" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.669</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="a52" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.a52</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="aac" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.aac</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="ac3" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.ac3</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="adt" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.adt</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="adts" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.adts</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="aif" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.aif</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="aifc" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.aifc</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="aiff" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.aiff</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="amr" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.amr</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="amv" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.amv</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="aob" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.aob</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="ape" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.ape</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="asf" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.asf</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="asx" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.asx</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="au" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.au</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="avi" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.avi</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="b4s" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.b4s</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="bik" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.bik</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="caf" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.caf</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="cda" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.cda</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="cue" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.cue</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="divx" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.divx</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="drc" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.drc</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="dts" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.dts</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="dv" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.dv</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="f4v" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.f4v</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="flac" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.flac</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="flv" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.flv</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="gvi" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.gvi</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="gxf" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.gxf</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="ifo" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.ifo</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="it" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.it</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="m1v" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.m1v</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="m2t" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.m2t</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="m2ts" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.m2ts</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="m2v" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.m2v</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="m3u" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.m3u</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="m3u8" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.m3u8</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="m4a" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.m4a</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="m4p" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.m4p</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="m4v" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.m4v</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mid" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mid</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mka" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mka</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mkv" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mkv</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mlp" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mlp</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mod" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mod</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mov" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mov</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mp1" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mp1</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mp2" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mp2</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mp2v" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mp2v</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mp3" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mp3</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mp4" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mp4</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mp4v" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mp4v</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mpa" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mpa</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mpc" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mpc</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mpe" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mpe</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mpeg" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mpeg</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mpeg1" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mpeg1</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mpeg2" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mpeg2</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mpeg4" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mpeg4</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mpg" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mpg</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mpga" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mpga</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mpv2" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mpv2</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mts" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mts</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mtv" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mtv</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="mxf" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mxf</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="nsv" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.nsv</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="nuv" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.nuv</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="oga" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.oga</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="ogg" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.ogg</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="ogm" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.ogm</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="ogv" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.ogv</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="ogx" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.ogx</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="oma" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.oma</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="opus" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.opus</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="pls" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.pls</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="qcp" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.qcp</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="ra" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.ra</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="ram" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.ram</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="rec" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.rec</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="rm" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.rm</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="rmi" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.rmi</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="rmvb" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.rmvb</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="rpl" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.rpl</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="s3m" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.s3m</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="sdp" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.sdp</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="snd" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.snd</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="spx" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.spx</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="thp" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.thp</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="tod" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.tod</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="ts" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.ts</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="tta" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.tta</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="tts" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.tts</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="vlc" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.vlc</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="vob" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.vob</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="voc" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.voc</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="vqf" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.vqf</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="vro" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.vro</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="w64" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.w64</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="wav" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.wav</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="webm" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.webm</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="wma" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.wma</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="wmv" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.wmv</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="wv" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.wv</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="wvx" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.wvx</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="xa" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.xa</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="xesc" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.xesc</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="xm" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.xm</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="xspf" Parameters="--started-from-file &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.xspf</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap2:SupportedVerbs>
+              <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+              <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+            </uap2:SupportedVerbs>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="vlt" Parameters="-Iskins --skins2-last &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.vlt</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="wsz" Parameters="-Iskins --skins2-last &quot;%1&quot;">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.wsz</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
+        <uap:Extension Category="windows.protocol" Executable="vlcdemo.exe" EntryPoint="vlcdemo.App">
+          <uap:Protocol Name="vlc-ads" />
         </uap:Extension>
       </Extensions>
-    </Application>
-    <Application Id="VLC" Executable="VLC\vlc.exe">
-      <uap:VisualElements DisplayName="vlc.exe" Square150x150Logo="Assets\AppMedTile.png" Square44x44Logo="Assets\AppList.png" Description="VLC" BackgroundColor="transparent" AppListEntry="none">
-        <uap:DefaultTile Wide310x150Logo="Assets\AppWideTile.png" Square310x310Logo="Assets\AppLargeTile.png">
-          <uap:ShowNameOnTiles>
-            <uap:ShowOn Tile="square150x150Logo" />
-            <uap:ShowOn Tile="wide310x150Logo" />
-            <uap:ShowOn Tile="square310x310Logo" />
-          </uap:ShowNameOnTiles>
-        </uap:DefaultTile>
-        <uap:SplashScreen Image="Assets\AppSplashScreen.png" BackgroundColor="black" />
-      </uap:VisualElements>
     </Application>
   </Applications>
   <Capabilities>

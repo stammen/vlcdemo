@@ -8,7 +8,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vlcdemo", "vlcdemo\vlcdemo.
 		{FA84B8D8-8DD6-4ACF-A44D-115860CF1958} = {FA84B8D8-8DD6-4ACF-A44D-115860CF1958}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "launcher2", "launcher2\launcher2.vcxproj", "{FA84B8D8-8DD6-4ACF-A44D-115860CF1958}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vlclauncher", "vlclauncher\vlclauncher.vcxproj", "{FA84B8D8-8DD6-4ACF-A44D-115860CF1958}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

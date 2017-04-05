@@ -1,8 +1,8 @@
-// launcher2.cpp : Defines the entry point for the application.
+// vlclauncher.cpp : Defines the entry point for the application.
 //
 
 #include "stdafx.h"
-#include "launcher2.h"
+#include "vlclauncher.h"
 #include <conio.h>
 #include <Windows.h>
 #include <string>
@@ -25,7 +25,7 @@ bool LaunchVLCAds()
 }
 
 
-bool LaunchVLC()
+bool LaunchVLC(LPWSTR lpCmdLine)
 {
     STARTUPINFO si;
     PROCESS_INFORMATION pi;
@@ -43,7 +43,7 @@ bool LaunchVLC()
 
     // Start the child process. 
     int retvalue = CreateProcess(path.c_str(),
-        NULL,        // Command line
+        lpCmdLine,      // Command line
         NULL,           // Process handle not inheritable
         NULL,           // Thread handle not inheritable
         FALSE,          // Set handle inheritance to FALSE
@@ -51,7 +51,7 @@ bool LaunchVLC()
         NULL,           // Use parent's environment block
         NULL,           // Use parent's starting directory 
         &si,            // Pointer to STARTUPINFO structure
-        &pi            // Pointer to PROCESS_INFORMATION structure
+        &pi             // Pointer to PROCESS_INFORMATION structure
     );
 
     int lastError = GetLastError();
@@ -77,7 +77,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     if (h != INVALID_HANDLE_VALUE)
     {
         CloseHandle(h);
-        LaunchVLC();
+        LaunchVLC(lpCmdLine);
     }
     else
     {
