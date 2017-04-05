@@ -44,6 +44,7 @@ BundleArtifacts
 
 # Ignore VLC folder
 VLC/
+media/
 
 
 
