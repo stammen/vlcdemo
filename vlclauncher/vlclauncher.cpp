@@ -12,6 +12,9 @@
 #include <Pathcch.h>
 #include <Shlobj.h>
 
+#include <iostream>
+#include <fstream>
+
 using namespace Windows::Foundation;
 using namespace Windows::System;
 
@@ -37,11 +40,14 @@ bool LaunchVLC(LPWSTR lpCmdLine)
     std::wstring path = dir;
     path += L"\\VLC\\vlc.exe";
 
-    // need to add path to vlc.exe to the command line we send to vlc.exe.
-    // vlc.exe always removes the first arg (path to exe) from its command line
-    std::wstring cmd = path;
-    cmd += L" ";
-    cmd += lpCmdLine;
+    // Need to track down vlc command line weirdness
+    std::wstring cmd;
+    if (wcslen(lpCmdLine) > 0)
+    {
+        cmd += L"--started-from-file ";
+        cmd += lpCmdLine;
+    }
+
 
     ZeroMemory(&si, sizeof(si));
     si.cb = sizeof(si);
@@ -49,7 +55,7 @@ bool LaunchVLC(LPWSTR lpCmdLine)
 
     // Start the child process. 
     int retvalue = CreateProcess(path.c_str(),
-        (LPWSTR)cmd.c_str(),      // Command line
+        (LPWSTR) cmd.c_str(),      // Command line
         NULL,           // Process handle not inheritable
         NULL,           // Thread handle not inheritable
         FALSE,          // Set handle inheritance to FALSE
@@ -78,6 +84,17 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     auto hr = SHGetFolderPathW(NULL, CSIDL_APPDATA | CSIDL_FLAG_CREATE, NULL, SHGFP_TYPE_CURRENT, buf);
     std::wstring path = buf;
     path += L"\\vlcdemo-firstrun.txt";
+
+#ifdef ENABLE_LOG
+    std::wstring logPath = buf;
+    logPath += L"\\log.txt";
+    std::wofstream  myfile;
+    myfile.open(logPath.c_str(), std::ios::app);
+    std::wstring cmd = lpCmdLine;
+
+    myfile << cmd.c_str() << std::endl;
+    myfile.close();
+#endif
 
     auto h = CreateFile2(path.c_str(), GENERIC_READ, 0, OPEN_EXISTING, NULL);
     if (h != INVALID_HANDLE_VALUE)
