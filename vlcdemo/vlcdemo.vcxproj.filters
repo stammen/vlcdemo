@@ -77,6 +77,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="vlcdemo_TemporaryKey.pfx" />
+    <None Include="$(LauncherBinPath)vlclauncher.exe" />
+    <None Include="$(LauncherBinPath)vlclauncher.pdb" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainPage.xaml" />
