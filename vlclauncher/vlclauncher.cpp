@@ -44,7 +44,9 @@ bool LaunchVLC(LPWSTR lpCmdLine)
     std::wstring cmd;
     if (wcslen(lpCmdLine) > 0)
     {
-        cmd += L"--started-from-file ";
+        cmd += L"\"";
+        cmd += path;
+        cmd += L"\"";
         cmd += lpCmdLine;
     }
 
