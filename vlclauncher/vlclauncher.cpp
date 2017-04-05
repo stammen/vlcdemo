@@ -37,13 +37,19 @@ bool LaunchVLC(LPWSTR lpCmdLine)
     std::wstring path = dir;
     path += L"\\VLC\\vlc.exe";
 
+    // need to add path to vlc.exe to the command line we send to vlc.exe.
+    // vlc.exe always removes the first arg (path to exe) from its command line
+    std::wstring cmd = path;
+    cmd += L" ";
+    cmd += lpCmdLine;
+
     ZeroMemory(&si, sizeof(si));
     si.cb = sizeof(si);
     ZeroMemory(&pi, sizeof(pi));
 
     // Start the child process. 
     int retvalue = CreateProcess(path.c_str(),
-        lpCmdLine,      // Command line
+        (LPWSTR)cmd.c_str(),      // Command line
         NULL,           // Process handle not inheritable
         NULL,           // Thread handle not inheritable
         FALSE,          // Set handle inheritance to FALSE
