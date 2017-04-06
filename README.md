@@ -12,8 +12,7 @@ A Windows 10 UWP AppX of this demo is
 [available](https://1drv.ms/u/s!ApzPPQxU0_aThvksl736QlJhqGV1iA). Note: This
 version is x64 only.
 
-On launch (and eventually first launch only) of the VLC UWP app, the user is
-presented with the following UI:
+On first launch of the VLC UWP app, the user is presented with the following UI:
 
 ![VLC Demo UWP App](Images/uwp.png "VLC Demo UWP App")
 
@@ -32,10 +31,10 @@ to be fully tested)
 
 The work to build this demo explored 2 areas:
 
-1.  Build VLC as a Centennial App with the [Desktop App
+1.  Building VLC as a Centennial App with the [Desktop App
     Converter](https://docs.microsoft.com/en-us/windows/uwp/porting/desktop-to-uwp-run-desktop-app-converter)
 
-2.  Build VLC as a UWP app that contains all of the VLC files. Using the Desktop
+2.  Building VLC as a UWP app that contains all of the VLC files. Using the Desktop
     App Converter is not required.
 
 The UWP VLC Demo app was built without using the Desktop App Converter. All of
@@ -98,6 +97,8 @@ Click the **Browse** button and select **Trusted Root Certification
 Authorities**. Click **OK**. Click **Next**. Click **Finish**. The certificate
 is now installed.
 
+Note: You can also select the **Trusted Persons** store.
+
 You can now install the AppX of the VLC app. Double click on the VLC.Appx file.
 
 ![VLC AppX](Images/installappx.png "VLC AppX")
@@ -159,7 +160,7 @@ In order to create the AppX package for the Windows Store **do not use the Store
     "C:\Program Files (x86)\Windows Kits\10\bin\x86\MakeAppx.exe" pack /p .\VLC.appx /d .\AppX /l
     ```
     
-1. You will need to sign the VLC.appx file with a certificate. Use the following commands to generate the certificate files.
+1. You will need to sign the VLC.appx file with a certificate. Use the following commands to generate the certificate files. Do not add a password to the certificate.
 
     ```console
     "C:\Program Files (x86)\Windows Kits\10\bin\x86\MakeCert.exe" -r -h 0 -n "CN=vlc" -eku 1.3.6.1.5.5.7.3.3 -pe -sv vlc.pvk vlc.cer
