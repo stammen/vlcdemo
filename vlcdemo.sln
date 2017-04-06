@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.0
+VisualStudioVersion = 15.0.26228.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vlcdemo", "vlcdemo\vlcdemo.vcxproj", "{C68E69FA-EEC6-4998-828C-4532092A92E1}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -11,6 +11,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vlclauncher", "vlclauncher\vlclauncher.vcxproj", "{FA84B8D8-8DD6-4ACF-A44D-115860CF1958}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopBridgeDebuggingProject", "DesktopBridgeDebuggingProject\DesktopBridgeDebuggingProject.vsdproj", "{0AE26D1F-A58D-4A5E-A5DF-574991A9C1B0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FA84B8D8-8DD6-4ACF-A44D-115860CF1958} = {FA84B8D8-8DD6-4ACF-A44D-115860CF1958}
+		{C68E69FA-EEC6-4998-828C-4532092A92E1} = {C68E69FA-EEC6-4998-828C-4532092A92E1}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
