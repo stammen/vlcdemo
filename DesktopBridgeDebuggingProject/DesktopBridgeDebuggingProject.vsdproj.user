@@ -3,11 +3,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <DebugEngines>{449ec4cc-30d2-4032-9256-ee18eb41b62b}</DebugEngines>
     <BackgroundTaskDebugEngines>{449ec4cc-30d2-4032-9256-ee18eb41b62b}</BackgroundTaskDebugEngines>
-    <CreateCleanLayout>false</CreateCleanLayout>
+    <CreateCleanLayout>true</CreateCleanLayout>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugEngines>{449ec4cc-30d2-4032-9256-ee18eb41b62b}</DebugEngines>
     <BackgroundTaskDebugEngines>{449ec4cc-30d2-4032-9256-ee18eb41b62b}</BackgroundTaskDebugEngines>
-    <CreateCleanLayout>false</CreateCleanLayout>
+    <CreateCleanLayout>true</CreateCleanLayout>
   </PropertyGroup>
 </Project>
