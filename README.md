@@ -15,14 +15,14 @@ version is x64 only.
 On launch (and eventually first launch only) of the VLC UWP app, the user is
 presented with the following UI:
 
-![VLC Demo UWP App](media/3268979d48cf307b594b42bd97c08752.png)
+![VLC Demo UWP App](Images/uwp.png "VLC Demo UWP App")
 
 VLC Demo UWP App
 
 Selecting any option on the page will launch the Win32 VLC player and termimate
 the VLC UWP app.
 
-![Win32 VLC Player](media/4d954365c2d2ed16692f51dee511cb7c.png)
+![Win32 VLC Player](Images/vlcplayer.png "Win32 VLC Player")
 
 Win32 VLC Player
 
@@ -74,24 +74,23 @@ After the conversion is complete open the . folder. You will need to install th
 certificate created by the Desktop App Converter. 1. Right click on the
 auto-generated.cer file and select *Install Certificate*
 
-![Install Certificate](media/9f612f9293d737c6c5356fe2069ff867.png)
+![Install Certificate](Images/cert.png "Install Certificate")
 
-Install Certificate
+![Install Certificate](Images/installcert.png "Install Certificate")
 
-![Install Certificate](media/f75f77bb9b201d9e330675bce4fec5af.png)
 
 Install Certificate
 
 You will add the certificate to Local Machine Trusted Root Certification
 Authorities
 
-![Select Local Machine](media/1bb5935e9963eddb1f78b87b810636f0.png)
+![Select Local Machine](Images/localmachine.png "Select Local Machine")
 
 Select Local Machine
 
 Select **Local Machine**. Click **Next**.
 
-![Select Certificate Store](media/659071cebb4fa806cc09a7167fc5f7cc.png)
+![Select Certificate Store](Images/selectstore.png "Select Certificate Store")
 
 Select Certificate Store
 
@@ -101,19 +100,19 @@ is now installed.
 
 You can now install the AppX of the VLC app. Double click on the VLC.Appx file.
 
-![VLC AppX](media/eed97117952e50d2cdc6a68075fcaf79.png)
+![VLC AppX](Images/installappx.png "VLC AppX")
 
 VLC AppX
 
 Click on **Install**
 
-![Install VLC](media/0ec517175ca456178a748e90cbc39625.png)
+![Install VLC](Images/installappx2.png "Install VLC")
 
 Install VLC
 
 You can now launch the Centennial version of VLC
 
-![Launch VLC](media/6b4d79822b5c929034ef37a61d295514.png)
+![Launch VLC](Images/installed.png "Launch VLC")
 
 Launch VLC
 
@@ -193,19 +192,19 @@ files. The resource.props file was added to the vlcdemo project as follows.
 
 Select **Property Manager** from the **View** menu
 
-![Property Manager](media/678187ce800c6b0b83e585220bec7aa1.png)
+![Property Manager](Images/propertymanager.png "Property Manager")
 
 Property Manager
 
 Right click on vlcdemo and select **Add Existing Property Sheet...**
 
-![Add Existing Property Sheet](media/3feb5797ba868e4106807277f3bd5693.png)
+![Add Existing Property Sheet](Images/addexistingpropsheet.png "Add Existing Property Sheet")
 
 Add Existing Property Sheet
 
 Select the file **resources.props** from the vlcdemo folder.
 
-![Resources.props](media/c6a8831a848e56b193f397cdd19d52df.png)
+![Resources.props](Images/resource.props.png "Resources.props")
 
 Resources.props
 
@@ -224,13 +223,13 @@ The xml of the Package.appxmanifest file must be edited with a text editor.
 Right click on the Package.appxmanifest file file in the vlcdemo project. Select
 **Open With...** from the pop-up menu.
 
-![Manifest Open With...](media/a4fc0c900b46034e8c59464ce563da7d.png)
+![Manifest Open With...](Images/manifest-open-with.png "Manifest Open With...")
 
 Manifest Open With...
 
 Select **XML (Text) Editor** from the list. Click **OK**.
 
-![Manifest Open With...](media/58a2f972a8d38d5e1d39fee9d0a38adc.png)
+![Manifest Open With...](Images/manifest-editor.png "Manifest Open With...")
 
 Manifest Open With...
 
