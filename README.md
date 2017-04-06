@@ -1,4 +1,4 @@
-#VLC UWP Demo
+# VLC UWP Demo #
 
 
 The VLC demo project wraps the Win32 [VLC media
@@ -42,7 +42,7 @@ The UWP VLC Demo app was built without using the Desktop App Converter. All of
 the VLC app files are contained in the UWP app. The Win32 VLC player app is
 launched from wihin the UWP app as a FullTrust process.
 
-##How to convert VLC to a Centennial App using the Desktop App Converter
+## How to convert VLC to a Centennial App using the Desktop App Converter ##
 
 Although the UWP VLC demo did not use the Desktop App Converter to create the
 demo app, the process for converting VLC to a Centennial App is documented
@@ -68,7 +68,7 @@ DesktopAppConverter.exe -Installer .\vlc-2.2.4-win32.exe -InstallerArguments "/L
 -   The InstallerArguments "/L=1033 /S" specify the english version of VLC
     (/L=1033) and a silent install (/S)
 
-## Install Certificate
+## Install Certificate ##
 
 After the conversion is complete open the . folder. You will need to install the
 certificate created by the Desktop App Converter. 1. Right click on the
@@ -116,7 +116,7 @@ You can now launch the Centennial version of VLC
 
 Launch VLC
 
-## Building the UWP VLC Demo App
+## Building the UWP VLC Demo App ##
 
 The source code to the UWP VLC demo app is currently in a [private github
 repo](https://github.com/stammen/vlcdemo). Please email <dalestam@microsoft.com>
@@ -146,7 +146,7 @@ with your github username to obtain access to the source code.
     
 1. In order to run the vlcdemo, select **Start without Debugging** from the **Debug** menu.
 
-##Creating the AppX Package for the Windows Store
+## Creating the AppX Package for the Windows Store ##
 In order to create the AppX package for the Windows Store **do not use the Store option in Visual Studio**. You need to manually create the AppX using the MakeAppx.exe tool.
 
 1. Select Deploy from the Build menu. You should have also selected a Release x64 build
@@ -180,9 +180,9 @@ In order to create the AppX package for the Windows Store **do not use the Store
 
 1. The vlc demo is now installed on your computer.
 
-##Coding Discussion
+## Coding Discussion ##
 
-###Adding the VLC App Files to the Project
+### Adding the VLC App Files to the Project ###
 
 The following code was added to support launching VLC from the UWP app.
 
@@ -212,7 +212,7 @@ Now whenever a build of the vlcdemo project occurs, the VLC app files will be
 automatically copied to the AppX. This will also automate adding the VLC apps
 files when a Store Package is built.
 
-### Adding the Win32 VLC application to the App Manifest
+### Adding the Win32 VLC application to the App Manifest ###
 
 The vlcdemo UWP app needs to be able to launch the Win32 vlc.exe app as a
 FullTrust application. In order to do this, the Win32 vlc.exe app needs to be
