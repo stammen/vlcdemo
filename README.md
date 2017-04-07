@@ -337,7 +337,7 @@ Centennial version of VLC generated with the Desktop App Converter.
 
 ### Adding the VLC Media Player Files Associations ###
 
-The VLC Media Player (vle.exe) supports many file associations that are enabled by its Win32 Installer. The DesktopAppConverter can capture these file associations and translate then into 
+The VLC Media Player (vlc.exe) supports many file associations that are enabled by its Win32 Installer. The DesktopAppConverter can capture these file associations and translate then into 
 uap3:Extension tags that are added to the Package.appxmanifest file. The [How to convert VLC to a Centennial App using the Desktop App Converter](#how-to-convert-vlc-to-a-centennial-app-using-the-desktop-app-converter) 
 describes this process in detail. After conversion, the Package.appxmanifest file in the PackageFiles directly contains all of the required uap3:Extension tags. For example:
 
