@@ -183,6 +183,64 @@ In order to create the AppX package for the Windows Store **do not use the Store
 
 ## Coding Discussion ##
 
+### Requirements ###
+
+The following requirements are needed to build the vlcdemo:
+
+1. [Visual Studio 2017](https://www.visualstudio.com/downloads/) with C++ UWP development package installed
+1. [Desktop to UWP Packaging VSIX](http://go.microsoft.com/fwlink/?LinkId=797871)
+
+### vlcdemo Projects ###
+
+vlcdemo.sln contains the following three projects:
+
+1. #### DesktopBridgeDebuggingProject ####
+
+    This project was created using the [Desktop Bridge Debugging Project](http://go.microsoft.com/fwlink/?LinkId=797871) template installed into Visual Studio 2017. 
+    This project enables a Classic Windows application to be debugged as a Universal Windows Platform application. This project is only used to assist in launching and debugging
+    the other projects in the vlcdemo solution. It should be set as the Start project for the solution.
+    
+    
+1. #### vlclauncher ####
+
+    The vlclauncher project is a windowless Win32 application that is launched when the user attempts tp launch VLC. This app determines whether to launch the UWP ads app (vlcdemo) 
+    on first launch or vlc.exe (VLC Media Player) on all other subsequent launches of VLC. After vlclauncher launches one of the other apps, it termimates. The vlclauncher also passes
+    any command line arguments to vlc.exe.
+    
+1. #### vlcdemo ####
+
+    The vlcdemo app is a Windows 10 UWP app with a XAML UI. It is only launched the first time a users launches VLC after an install of the VLC app from the Windows Store. It displays several
+    ads for other Windows Store Apps and a Donate to VLC button. The user is also presented with a option to directly launch the VLC application.
+    
+1. #### vlc.exe ####
+
+    The original Win32 vlc.exe application and all of its supporting files do not require a separate project. These files are contained in a separate VLC folder and are simply copies to the AppX package during a build.
+    
+### First Launch of the VLC Windows Store App ###
+
+On first launch of the VLC Windows Store App, the following sequenece occurs
+
+1. vlclauncher is launched by Windows 10. This windowless Win32 app determines it is a first launch of the app. vlclauncher launches the vlcdemo UWP app to display the ads and donate button.
+1. In the vlcdemo app:
+
+    * user clicks on any desired options (ad or Donate)
+    * User is presented with a Launch VLC option 
+    * User clicks on Launch VLC
+    * vlcdemo launches vlclauncher
+    * vlcdemo terminates
+    * vlclauncher determines this is no longer a first launch scenario and launches vlc.exe
+    * vlclauncher terminates
+    * vlc.exe runs as a FullTrust Win32 application with all of its features enabled
+    
+### Launch of the VLC Windows Store App After First Launch ###
+
+1. vlclauncher is launched by Windows 10
+1. vlclauncher determines it is not a first launch of the app
+1. vlclauncher launches the vlc.exe and passes on any command line arguments
+1. vlclauncher termimates
+1. vlc.exe runs as a FullTrust Win32 application with all of its features enabled
+
+
 ### Adding the VLC App Files to the Project ###
 
 The following code was added to support launching VLC from the UWP app.
@@ -249,12 +307,12 @@ Add uap2, uap3, rescap and desktop to IgnorableNamespaces
     IgnorableNamespaces="uap uap2 uap3 mp rescap desktop"
 ```
 
-We need to add VLC in an Application tag in the Applications section. I added
+We need to add the vlclauncher and vlcdemo apps in an Application tag in the Applications section. I added
 the following:
 
 ```xml
-    <Application Id="VLC" Executable="VLC\vlc.exe" EntryPoint="Windows.FullTrustApplication">
-      <uap:VisualElements DisplayName="VLC" Square150x150Logo="Assets\AppMedTile.png" Square44x44Logo="Assets\AppList.png" Description="VLC" BackgroundColor="transparent" AppListEntry="none">
+    <Application Id="vlclauncher" Executable="vlclauncher.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements DisplayName="VLC" Square150x150Logo="Assets\AppMedTile.png" Square44x44Logo="Assets\AppList.png" Description="VLC Launcher" BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\AppWideTile.png" Square310x310Logo="Assets\AppLargeTile.png">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo" />
@@ -264,59 +322,40 @@ the following:
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\AppSplashScreen.png" BackgroundColor="black" />
       </uap:VisualElements>
-    </Application>
+      <Extensions>
+        <uap:Extension Category="windows.protocol" Executable="vlcdemo.exe" EntryPoint="vlcdemo.App">
+          <uap:Protocol Name="vlc-ads" />
+        </uap:Extension>
+      </Extensions>
 ```
 
-It is important to note the **AppListEntry="none"** property in the
-uap:VisualElements element. This prevents the Win32 VLC app from appearing in
-the Windows application list. Only the UWP app will appear in the Windows
-applications list. We launch the Win32 VLC app with the UWP app.
-
-Note: Some work will be needed with the above VLC Application tag to add the
-media filetypes supported by VLC. For example, if a user double clicks on a .wav
-file, VLC should be launched to play the file.
-
-Note: Specifying multiple Application tags in the Applications section of the
-Package.appxmanifest is only allowed for Centennial Apps. Pure UWP apps will
-fail WACK if more than one application is specified in the Applications section.
+This Application tag specifies the vlclauncher as the default application for the VLC UWP app. vlclauncher will always run first when the user launches the VLC UWP app. 
+Since vlclauncher is a FullTrustApplication, it can launch vlc.exe without any restrictions. vlclauncher can also launch the vlcdemo app using a Win10 uri protocol.
 
 Note: The tiles specified in the Package.appxmanifest file were copied from the
 Centennial version of VLC generated with the Desktop App Converter.
 
-### Launching VLC from the UWP App ###
+### Adding the VLC Media Player Files Associations ###
 
-Now that we have added the Win32 VLC app files to the project and the vlc.exe as
-a application to the Package.appxmanifest file, we can now launch vlc.exe from
-the UWP app. In MainPage.xaml.cpp, take a look at the function
+The VLC Media Player (vle.exe) supports many file associations that are enabled by its Win32 Installer. The DesktopAppConverter can capture these file associations and translate then into 
+uap3:Extension tags that are added to the Package.appxmanifest file. The [How to convert VLC to a Centennial App using the Desktop App Converter](#how-to-convert-vlc-to-a-centennial-app-using-the-desktop-app-converter) 
+describes this process in detail. After conversion, the Package.appxmanifest file in the PackageFiles directly contains all of the required uap3:Extension tags. For example:
 
-```cpp
-void vlcdemo::MainPage::StartVLC(Windows::UI::Core::CoreDispatcher^ dispatcher)
-{
-    auto t = create_task(Windows::ApplicationModel::Package::Current->GetAppListEntriesAsync());
-    t.then([dispatcher](IVectorView <Windows::ApplicationModel::Core::AppListEntry^>^ entries)
-    {
-        auto entry = entries->GetAt(1);
-        auto t2 = create_task(entry->LaunchAsync());
-        t2.then([dispatcher](bool)
-        {
-            dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new DispatchedHandler([=]()
-            {
-                Windows::UI::Xaml::Application::Current->Exit();
-            }));
-        });
-    });
-}
+```xml
+<uap3:Extension Category="windows.fileTypeAssociation">
+  <uap3:FileTypeAssociation Name="mp3" Parameters="--started-from-file &quot;%1&quot;">
+    <uap:SupportedFileTypes>
+      <uap:FileType>.mp3</uap:FileType>
+    </uap:SupportedFileTypes>
+    <uap2:SupportedVerbs>
+      <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
+      <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+    </uap2:SupportedVerbs>
+  </uap3:FileTypeAssociation>
+</uap3:Extension>
 ```
 
-This function does 2 things. First it launches the vlc.exe as a FullTrust Win32
-app. After the launch is complete, it exits the UWP app so only the Win32 VLC
-app is presented to the user. This function uses the relatively undocumented
-Windows::ApplicationModel::Package::Current-\>GetAppListEntriesAsync() method to
-get the list of Applications specified in the Package.appxmanifest file. Once we
-have the list, we get the AppListEntry for the vlc.exe (the 2nd position in the
-list) and call LaunchAsync() to launch vlc.exe. We then use the
-Windows::UI::Core::CoreDispatcher to terminate the UWP app from the UI thread,
-allowing vlc.exe to launch before we terminate the UWP app.
+All of these extensions were copied into the Extensions section of the Package.appxmanifest file for the UWP VLC app.
 
-The MainPage.xaml.cpp file contains all of the other functionality of the demo
-app including launching the Windows Store, the VLC donation page, etc.
+
+
