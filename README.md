@@ -218,7 +218,7 @@ vlcdemo.sln contains the following three projects:
     
 ### First Launch of the VLC Windows Store App ###
 
-On first launch of the VLC Windows Store App, the following sequenece occurs
+On first launch of the VLC Windows Store App, the following sequence occurs
 
 1. vlclauncher is launched by Windows 10. This windowless Win32 app determines it is a first launch of the app. vlclauncher launches the vlcdemo UWP app to display the ads and donate button.
 1. In the vlcdemo app:
