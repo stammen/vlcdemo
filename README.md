@@ -307,8 +307,7 @@ Add uap2, uap3, rescap and desktop to IgnorableNamespaces
     IgnorableNamespaces="uap uap2 uap3 mp rescap desktop"
 ```
 
-We need to add the vlclauncher and vlcdemo apps in an Application tag in the Applications section. I added
-the following:
+We add the vlclauncher and vlcdemo apps in an Application tag in the Applications section. 
 
 ```xml
     <Application Id="vlclauncher" Executable="vlclauncher.exe" EntryPoint="Windows.FullTrustApplication">
@@ -327,6 +326,7 @@ the following:
           <uap:Protocol Name="vlc-ads" />
         </uap:Extension>
       </Extensions>
+    </Application>   
 ```
 
 This Application tag specifies the vlclauncher as the default application for the VLC UWP app. vlclauncher will always run first when the user launches the VLC UWP app. 
