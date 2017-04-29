@@ -7,5 +7,8 @@
     <LayoutFile Include="$(MyProjectOutputPath)\vlclauncher.exe">
       <PackagePath>$(PackageLayout)\vlclauncher\vlclauncher.exe</PackagePath>
     </LayoutFile>
+    <LayoutFile Include="$(MyProjectOutputPath)\vlclauncher.pdb">
+      <PackagePath>$(PackageLayout)\vlclauncher\vlclauncher.pdb</PackagePath>
+    </LayoutFile>
   </ItemGroup>
 </Project>
