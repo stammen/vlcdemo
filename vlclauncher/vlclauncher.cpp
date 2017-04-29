@@ -38,7 +38,7 @@ bool LaunchVLC(LPWSTR lpCmdLine)
     GetModuleFileName(NULL, dir, MAX_PATH);
     PathCchRemoveFileSpec(dir, wcslen(dir));
     std::wstring path = dir;
-    path += L"\\VLC\\vlc.exe";
+    path += L"\\..\\VLC\\vlc.exe";
 
     // Need to track down vlc command line weirdness
     std::wstring cmd;

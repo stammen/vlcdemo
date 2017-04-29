@@ -1,31 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap2="http://schemas.microsoft.com/appx/manifest/uap/windows10/2" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities" xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10" IgnorableNamespaces="uap uap2 uap3 mp rescap desktop">
-  <Identity Name="9f342ee6-f5d9-4ac3-98d1-2c4bcd7a5c0f" Publisher="CN=dalestam" Version="1.0.22.0" />
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap2="http://schemas.microsoft.com/appx/manifest/uap/windows10/2" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" xmlns:uap4="http://schemas.microsoft.com/appx/manifest/uap/windows10/4" xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities" xmlns:rescap3="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities/3" xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10" xmlns:desktop2="http://schemas.microsoft.com/appx/manifest/desktop/windows10/2" xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10" xmlns:wincap3="http://schemas.microsoft.com/appx/manifest/foundation/windows10/windowscapabilities/3" IgnorableNamespaces="mp uap4 wincap3 rescap3 desktop2 com">
+  <Identity Name="VLC" ProcessorArchitecture="x86" Publisher="CN=dalestam" Version="2.2.4.0" />
   <mp:PhoneIdentity PhoneProductId="9f342ee6-f5d9-4ac3-98d1-2c4bcd7a5c0f" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>VLC</DisplayName>
     <PublisherDisplayName>vlc</PublisherDisplayName>
     <Logo>Assets\AppStoreLogo.png</Logo>
   </Properties>
-  <Dependencies>
-    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.14393.0" />
-  </Dependencies>
   <Resources>
-    <Resource Language="x-generate" />
+    <Resource Language="en-us" />
+    <Resource uap:Scale="100" />
+    <Resource uap:Scale="125" />
+    <Resource uap:Scale="150" />
+    <Resource uap:Scale="200" />
+    <Resource uap:Scale="400" />
   </Resources>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.15063.0" />
+  </Dependencies>
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
   <Applications>
-    <Application Id="vlclauncher" Executable="vlclauncher.exe" EntryPoint="Windows.FullTrustApplication">
-      <uap:VisualElements DisplayName="VLC" Square150x150Logo="Assets\AppMedTile.png" Square44x44Logo="Assets\AppList.png" Description="VLC Launcher" BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\AppWideTile.png" Square310x310Logo="Assets\AppLargeTile.png">
+    <Application Id="VLC" Executable="vlclauncher\vlclauncher.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements DisplayName="VLC" Description="VLC" BackgroundColor="transparent" Square150x150Logo="Assets\AppMedTile.png" Square44x44Logo="Assets\AppList.png">
+        <uap:DefaultTile Wide310x150Logo="Assets\AppWideTile.png" Square310x310Logo="Assets\AppLargeTile.png" Square71x71Logo="Assets\AppSmallTile.png">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo" />
             <uap:ShowOn Tile="wide310x150Logo" />
             <uap:ShowOn Tile="square310x310Logo" />
           </uap:ShowNameOnTiles>
         </uap:DefaultTile>
-        <uap:SplashScreen Image="Assets\AppSplashScreen.png" BackgroundColor="black" />
       </uap:VisualElements>
       <Extensions>
+        <uap:Extension Category="windows.protocol" Executable="vlcdemo.exe" EntryPoint="vlcdemo.App">
+          <uap:Protocol Name="vlc-ads" />
+        </uap:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
           <uap3:FileTypeAssociation Name="3g2" Parameters="--started-from-file &quot;%1&quot;">
             <uap:SupportedFileTypes>
@@ -34,7 +44,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.3g2'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -45,7 +57,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.3ga'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -56,7 +70,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.3gp'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -67,7 +83,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.3gp2'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -78,7 +96,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.3gpp'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -89,7 +109,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.669'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -100,7 +122,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.a52'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -111,7 +135,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.aac'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -122,7 +148,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.ac3'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -133,7 +161,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.adt'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -144,7 +174,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.adts'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -155,7 +187,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.aif'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -166,7 +200,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.aifc'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -177,7 +213,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.aiff'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -188,7 +226,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.amr'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -199,7 +239,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.amv'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -210,7 +252,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.aob'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -221,7 +265,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.ape'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -232,7 +278,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.asf'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -243,7 +291,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.asx'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -254,7 +304,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.au'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -265,7 +317,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.avi'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -276,7 +330,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.b4s'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -287,7 +343,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.bik'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -298,7 +356,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.caf'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -309,7 +369,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.cda'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -320,7 +382,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.cue'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -331,7 +395,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.divx'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -342,7 +408,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.drc'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -353,7 +421,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.dts'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -364,7 +434,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.dv'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -375,7 +447,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.f4v'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -386,7 +460,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.flac'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -397,7 +473,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.flv'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -408,7 +486,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.gvi'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -419,7 +499,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.gxf'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -430,7 +512,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.ifo'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -441,7 +525,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.it'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -452,7 +538,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.m1v'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -463,7 +551,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.m2t'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -474,7 +564,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.m2ts'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -485,7 +577,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.m2v'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -496,7 +590,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.m3u'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -507,7 +603,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.m3u8'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -518,7 +616,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.m4a'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -529,7 +629,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.m4p'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -540,7 +642,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.m4v'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -551,7 +655,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mid'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -562,7 +668,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mka'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -573,7 +681,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mkv'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -584,7 +694,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mlp'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -595,7 +707,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mod'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -606,7 +720,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mov'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -617,7 +733,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mp1'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -628,7 +746,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mp2'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -639,7 +759,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mp2v'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -650,7 +772,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mp3'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -661,7 +785,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mp4'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -672,7 +798,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mp4v'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -683,7 +811,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mpa'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -694,7 +824,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mpc'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -705,7 +837,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mpe'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -716,7 +850,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mpeg'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -727,7 +863,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mpeg1'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -738,7 +876,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mpeg2'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -749,7 +889,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mpeg4'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -760,7 +902,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mpg'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -771,7 +915,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mpga'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -782,7 +928,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mpv2'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -793,7 +941,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mts'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -804,7 +954,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mtv'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -815,7 +967,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.mxf'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -826,7 +980,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.nsv'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -837,7 +993,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.nuv'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -848,7 +1006,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.oga'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -859,7 +1019,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.ogg'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -870,7 +1032,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.ogm'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -881,7 +1045,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.ogv'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -892,7 +1058,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.ogx'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -903,7 +1071,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.oma'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -914,7 +1084,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.opus'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -925,7 +1097,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.pls'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -936,7 +1110,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.qcp'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -947,7 +1123,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.ra'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -958,7 +1136,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.ram'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -969,7 +1149,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.rec'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -980,7 +1162,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.rm'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -991,7 +1175,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.rmi'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1002,7 +1188,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.rmvb'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1013,7 +1201,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.rpl'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1024,7 +1214,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.s3m'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1035,7 +1227,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.sdp'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1046,7 +1240,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.snd'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1057,7 +1253,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.spx'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1068,7 +1266,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.thp'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1079,7 +1279,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.tod'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1090,7 +1292,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.ts'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1101,7 +1305,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.tta'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1112,7 +1318,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.tts'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1123,7 +1331,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.vlc'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1134,7 +1344,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.vob'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1145,7 +1357,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.voc'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1156,7 +1370,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.vqf'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1167,7 +1383,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.vro'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1178,7 +1396,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.w64'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1189,7 +1409,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.wav'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1200,7 +1422,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.webm'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1211,7 +1435,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.wma'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1222,7 +1448,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.wmv'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1233,7 +1461,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.wv'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1244,7 +1474,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.wvx'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1255,7 +1487,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.xa'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1266,7 +1500,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.xesc'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1277,7 +1513,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.xm'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1288,7 +1526,9 @@
             <uap2:SupportedVerbs>
               <uap3:Verb Id="AddToPlaylistVLC" Parameters="--started-from-file --playlist-enqueue &quot;%1&quot;">AddToPlaylistVLC</uap3:Verb>
               <uap3:Verb Id="PlayWithVLC" Parameters="--started-from-file --no-playlist-enqueue &quot;%1&quot;">PlayWithVLC</uap3:Verb>
+              <!--<uap3:Verb Id="Open" Parameters="&#x002D;&#x002D;started&#x002D;from&#x002D;file &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb>-->
             </uap2:SupportedVerbs>
+            <!--Shell verb "open" was detected for file type association '.xspf'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1296,6 +1536,8 @@
             <uap:SupportedFileTypes>
               <uap:FileType>.vlt</uap:FileType>
             </uap:SupportedFileTypes>
+            <!--<uap2:SupportedVerbs xmlns:uap2="http://schemas.microsoft.com/appx/manifest/uap/windows10/2"><uap3:Verb Id="Open" Parameters="&#x002D;Iskins &#x002D;&#x002D;skins2&#x002D;last &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb></uap2:SupportedVerbs>-->
+            <!--Shell verb "open" was detected for file type association '.vlt'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
         <uap3:Extension Category="windows.fileTypeAssociation">
@@ -1303,16 +1545,11 @@
             <uap:SupportedFileTypes>
               <uap:FileType>.wsz</uap:FileType>
             </uap:SupportedFileTypes>
+            <!--<uap2:SupportedVerbs xmlns:uap2="http://schemas.microsoft.com/appx/manifest/uap/windows10/2"><uap3:Verb Id="Open" Parameters="&#x002D;Iskins &#x002D;&#x002D;skins2&#x002D;last &quot;%1&quot;" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3">Open</uap3:Verb></uap2:SupportedVerbs>-->
+            <!--Shell verb "open" was detected for file type association '.wsz'. Windows app packages can only use this verb on Windows 10 Creators Update (10.0.15063.0) or later. The corresponding AppxManifest.xml entry is commented out to keep this Windows app package compatible with earlier versions of Windows 10. To enable this feature, uncomment it and change the "MinVersion" attribute on the "TargetDeviceFamily" element to 10.0.15063.0. -->
           </uap3:FileTypeAssociation>
         </uap3:Extension>
-        <uap:Extension Category="windows.protocol" Executable="vlcdemo.exe" EntryPoint="vlcdemo.App">
-          <uap:Protocol Name="vlc-ads" />
-        </uap:Extension>
       </Extensions>
     </Application>
   </Applications>
-  <Capabilities>
-    <Capability Name="internetClient" />
-    <rescap:Capability Name="runFullTrust" />
-  </Capabilities>
 </Package>

@@ -3,12 +3,13 @@
   <ImportGroup Label="PropertySheets" />
 
   <PropertyGroup Label="LAUNCHER">
-    <LauncherBinPath Condition=" '$(LauncherBinPath)' == '' ">$(SolutionDir)\$(Platform)\$(Configuration)\</LauncherBinPath>
+    <LauncherBinPath Condition=" '$(LauncherBinPath)' == '' ">$(SolutionDir)\$(PlatformTarget)\$(Configuration)\</LauncherBinPath>
   </PropertyGroup>
 
-  <ItemGroup Label="ANGLE">
+  <ItemGroup Label="LAUNCHER">
     <None Include="$(LauncherBinPath)vlclauncher.exe">
-      <DeploymentContent>true</DeploymentContent>
+       <Link>vlclauncher\%(RecursiveDir)%(FileName)%(Extension)</Link>
+     <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="$(LauncherBinPath)vlclauncher.pdb">
       <DeploymentContent>true</DeploymentContent>

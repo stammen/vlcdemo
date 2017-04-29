@@ -12,9 +12,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DefineConstants>DEBUG</DefineConstants>
     <OutputPath>bin\x86\Debug\</OutputPath>
+    <PackageLayout>..\x86\Debug\vlcdemo\AppX</PackageLayout>
+    <StartupTile>vlclauncher</StartupTile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
+    <PackageLayout>..\x86\Release\vlcdemo\AppX</PackageLayout>
+    <StartupTile>vlclauncher</StartupTile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DefineConstants>DEBUG</DefineConstants>

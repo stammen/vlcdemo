@@ -5,7 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <LayoutFile Include="$(MyProjectOutputPath)\vlclauncher.exe">
-      <PackagePath>$(PackageLayout)\vlclauncher.exe</PackagePath>
+      <PackagePath>$(PackageLayout)\vlclauncher\vlclauncher.exe</PackagePath>
     </LayoutFile>
   </ItemGroup>
 </Project>
