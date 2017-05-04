@@ -1,36 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap2="http://schemas.microsoft.com/appx/manifest/uap/windows10/2" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" xmlns:uap4="http://schemas.microsoft.com/appx/manifest/uap/windows10/4" xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities" xmlns:rescap3="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities/3" xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10" xmlns:desktop2="http://schemas.microsoft.com/appx/manifest/desktop/windows10/2" xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10" xmlns:wincap3="http://schemas.microsoft.com/appx/manifest/foundation/windows10/windowscapabilities/3" IgnorableNamespaces="mp uap4 wincap3 rescap3 desktop2 com">
-  <Identity Name="VLC" ProcessorArchitecture="x86" Publisher="CN=dalestam" Version="2.2.4.0" />
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap2="http://schemas.microsoft.com/appx/manifest/uap/windows10/2" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities" xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10" IgnorableNamespaces="uap uap2 uap3 mp rescap desktop">
+  <Identity Name="9f342ee6-f5d9-4ac3-98d1-2c4bcd7a5c0f" Publisher="CN=dalestam" Version="1.0.25.0" />
   <mp:PhoneIdentity PhoneProductId="9f342ee6-f5d9-4ac3-98d1-2c4bcd7a5c0f" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>VLC</DisplayName>
     <PublisherDisplayName>vlc</PublisherDisplayName>
     <Logo>Assets\AppStoreLogo.png</Logo>
   </Properties>
-  <Resources>
-    <Resource Language="en-us" />
-    <Resource uap:Scale="100" />
-    <Resource uap:Scale="125" />
-    <Resource uap:Scale="150" />
-    <Resource uap:Scale="200" />
-    <Resource uap:Scale="400" />
-  </Resources>
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.15063.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.14393.0" />
   </Dependencies>
-  <Capabilities>
-    <rescap:Capability Name="runFullTrust" />
-  </Capabilities>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
   <Applications>
-    <Application Id="VLC" Executable="vlclauncher\vlclauncher.exe" EntryPoint="Windows.FullTrustApplication">
-      <uap:VisualElements DisplayName="VLC" Description="VLC" BackgroundColor="transparent" Square150x150Logo="Assets\AppMedTile.png" Square44x44Logo="Assets\AppList.png">
-        <uap:DefaultTile Wide310x150Logo="Assets\AppWideTile.png" Square310x310Logo="Assets\AppLargeTile.png" Square71x71Logo="Assets\AppSmallTile.png">
+    <Application Id="vlclauncher" Executable="vlclauncher\vlclauncher.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements DisplayName="VLC" Square150x150Logo="Assets\AppMedTile.png" Square44x44Logo="Assets\AppList.png" Description="VLC Launcher" BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\AppWideTile.png" Square310x310Logo="Assets\AppLargeTile.png">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo" />
             <uap:ShowOn Tile="wide310x150Logo" />
             <uap:ShowOn Tile="square310x310Logo" />
           </uap:ShowNameOnTiles>
         </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\AppSplashScreen.png" BackgroundColor="black" />
       </uap:VisualElements>
       <Extensions>
         <uap:Extension Category="windows.protocol" Executable="vlcdemo.exe" EntryPoint="vlcdemo.App">
@@ -1552,4 +1545,8 @@
       </Extensions>
     </Application>
   </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
 </Package>

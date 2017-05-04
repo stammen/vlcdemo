@@ -192,45 +192,12 @@
     <None Include="vlcdemo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\AppLargeTile.scale-100.png" />
-    <Image Include="Assets\AppLargeTile.scale-125.png" />
-    <Image Include="Assets\AppLargeTile.scale-150.png" />
     <Image Include="Assets\AppLargeTile.scale-200.png" />
-    <Image Include="Assets\AppList.scale-100.png" />
-    <Image Include="Assets\AppList.scale-125.png" />
-    <Image Include="Assets\AppList.scale-150.png" />
     <Image Include="Assets\AppList.scale-200.png" />
-    <Image Include="Assets\AppList.scale-400.png" />
-    <Image Include="Assets\AppList.targetsize-16.png" />
-    <Image Include="Assets\AppList.targetsize-16_altform-unplated.png" />
-    <Image Include="Assets\AppList.targetsize-24.png" />
-    <Image Include="Assets\AppList.targetsize-24_altform-unplated.png" />
-    <Image Include="Assets\AppList.targetsize-256.png" />
-    <Image Include="Assets\AppList.targetsize-256_altform-unplated.png" />
-    <Image Include="Assets\AppList.targetsize-32.png" />
-    <Image Include="Assets\AppList.targetsize-32_altform-unplated.png" />
-    <Image Include="Assets\AppList.targetsize-48.png" />
-    <Image Include="Assets\AppList.targetsize-48_altform-unplated.png" />
-    <Image Include="Assets\AppMedTile.scale-100.png" />
-    <Image Include="Assets\AppMedTile.scale-125.png" />
-    <Image Include="Assets\AppMedTile.scale-150.png" />
     <Image Include="Assets\AppMedTile.scale-200.png" />
-    <Image Include="Assets\AppMedTile.scale-400.png" />
-    <Image Include="Assets\AppSmallTile.scale-100.png" />
-    <Image Include="Assets\AppSmallTile.scale-125.png" />
-    <Image Include="Assets\AppSmallTile.scale-150.png" />
-    <Image Include="Assets\AppSmallTile.scale-200.png" />
-    <Image Include="Assets\AppSmallTile.scale-400.png" />
-    <Image Include="Assets\AppStoreLogo.scale-100.png" />
-    <Image Include="Assets\AppStoreLogo.scale-125.png" />
-    <Image Include="Assets\AppStoreLogo.scale-150.png" />
+    <Image Include="Assets\AppSplashScreen.scale-200.png" />
     <Image Include="Assets\AppStoreLogo.scale-200.png" />
-    <Image Include="Assets\AppStoreLogo.scale-400.png" />
-    <Image Include="Assets\AppWideTile.scale-100.png" />
-    <Image Include="Assets\AppWideTile.scale-125.png" />
-    <Image Include="Assets\AppWideTile.scale-150.png" />
     <Image Include="Assets\AppWideTile.scale-200.png" />
-    <Image Include="Assets\AppWideTile.scale-400.png" />
     <Image Include="Assets\Images\CandyCrush-header.png" />
     <Image Include="Assets\Images\CandyCrush-logo.jpeg" />
     <Image Include="Assets\Images\fitbit-header.png" />
@@ -238,6 +205,8 @@
     <Image Include="Assets\Images\hulu-header.jpg" />
     <Image Include="Assets\Images\Hulu-logo.png" />
     <Image Include="Assets\Images\VLC_Icon.svg.png" />
+    <Image Include="Assets\LockScreenLogo.scale-200.png" />
+    <Image Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.xaml.cpp">

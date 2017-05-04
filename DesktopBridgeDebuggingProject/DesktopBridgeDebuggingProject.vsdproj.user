@@ -12,8 +12,12 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <CreateCleanLayout>true</CreateCleanLayout>
+    <DebugEngines>{92ef0900-2251-11d2-b72e-0000f87572ef}</DebugEngines>
+    <BackgroundTaskDebugEngines>{92ef0900-2251-11d2-b72e-0000f87572ef}</BackgroundTaskDebugEngines>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <CreateCleanLayout>true</CreateCleanLayout>
+    <DebugEngines>{92ef0900-2251-11d2-b72e-0000f87572ef}</DebugEngines>
+    <BackgroundTaskDebugEngines>{92ef0900-2251-11d2-b72e-0000f87572ef}</BackgroundTaskDebugEngines>
   </PropertyGroup>
 </Project>
