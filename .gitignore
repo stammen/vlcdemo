@@ -46,6 +46,9 @@ BundleArtifacts
 VLC/
 media/
 
+# Ignore store build folder
+store/
+
 
 
 
